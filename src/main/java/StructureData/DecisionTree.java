@@ -1,10 +1,10 @@
 package StructureData;
-public class DesicionTree {
-    private class Node {
+public class DecisionTree {
+    public class Node {
         private String question;
         private String answer;
-        private Node yes;
-        private Node no;
+        private DecisionTree yes;
+        private DecisionTree no;
         public Node(String question) {
             this.question = question;
             answer =null;
@@ -12,10 +12,10 @@ public class DesicionTree {
         public void addAnswer(String answer) {
             this.answer = answer;
         }
-        public void addYes(Node yes) {
+        public void addYes(DecisionTree yes) {
             this.yes = yes;
         }
-        public void addNo(Node no) {
+        public void addNo(DecisionTree no) {
             this.no = no;
         }
         public boolean hadAnswer() {
@@ -28,15 +28,15 @@ public class DesicionTree {
         public String getQuestion() {
             return question;
         }
-        public Node getYes() {
+        public DecisionTree getYes() {
             return yes;
         }
-        public Node getNo() {
+        public DecisionTree getNo() {
             return no;
         }
     }
     public Node root;
-    public DesicionTree(String question) {
+    public DecisionTree(String question) {
         root = new Node(question);
     }
     

@@ -28,16 +28,16 @@ public class Doc {
     }
 
     public static void fillAnswerDecisionTree(DecisionTree DTree, ArrayList<String> words, String answer) {
-        String question = words.remove(0);
-        if (words.size() == 0) {
-            return;
-        }
-        if (question.equals("yes")) {
-            fillAnswerDecisionTree(DTree.root.getYes(), words, answer);
-        } else {
-            fillAnswerDecisionTree(DTree.root.getNo(), words, answer);
-        }
-        DTree.root.addAnswer(answer);
+//        String question = words.remove(0);
+//        if (words.size() == 0) {
+//            return;
+//        }
+//        if (question.equals("yes")) {
+//            fillAnswerDecisionTree(DTree.root.getYes(), words, answer);
+//        } else {
+//            fillAnswerDecisionTree(DTree.root.getNo(), words, answer);
+//        }
+//        DTree.root.addAnswer(answer);
     }
     public static void fillQuestionDecisionTree(DecisionTree DTree, String question){
 

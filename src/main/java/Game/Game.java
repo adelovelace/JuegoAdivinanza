@@ -6,20 +6,20 @@ import java.util.Scanner;
 public class Game {
     public static DecisionTree chargeInfo(){
         DecisionTree DTree = new DecisionTree("Es Mamifero?");
-        DTree.root.addYes(new DecisionTree("Es Carnivoro?"));
-        DTree.root.addNo(new DecisionTree("Es Carnivoro?"));
-        DTree.root.getYes().root.addYes(new DecisionTree("Se para en 4 patas?"));
-        DTree.root.getYes().root.addNo(new DecisionTree("Se para en 4 patas?"));
-        DTree.root.getNo().root.addYes(new DecisionTree("Se para en 4 patas?"));
-        DTree.root.getNo().root.addNo(new DecisionTree("Se para en 4 patas?"));
-        DTree.root.getYes().root.getYes().root.getYes().root.addAnswer("leon");
-        DTree.root.getYes().root.getYes().root.getNo().root.addAnswer("ballena");
-        DTree.root.getYes().root.getNo().root.getYes().root.addAnswer("venado");
-        DTree.root.getYes().root.getNo().root.getNo().root.addAnswer("Animal no encontrado");
-        DTree.root.getNo().root.getYes().root.getYes().root.addAnswer("Cocodrilo");
-        DTree.root.getNo().root.getYes().root.getNo().root.addAnswer("Tiburon");
-        DTree.root.getNo().root.getNo().root.getYes().root.addAnswer("Animal no encontrado");
-        DTree.root.getNo().root.getNo().root.getNo().root.addAnswer("Animal no encontrado");
+//        DTree.root.addYes(new DecisionTree("Es Carnivoro?"));
+//        DTree.root.addNo(new DecisionTree("Es Carnivoro?"));
+//        DTree.root.getYes().root.addYes(new DecisionTree("Se para en 4 patas?"));
+//        DTree.root.getYes().root.addNo(new DecisionTree("Se para en 4 patas?"));
+//        DTree.root.getNo().root.addYes(new DecisionTree("Se para en 4 patas?"));
+//        DTree.root.getNo().root.addNo(new DecisionTree("Se para en 4 patas?"));
+//        DTree.root.getYes().root.getYes().root.getYes().root.addAnswer("leon");
+//        DTree.root.getYes().root.getYes().root.getNo().root.addAnswer("ballena");
+//        DTree.root.getYes().root.getNo().root.getYes().root.addAnswer("venado");
+//        DTree.root.getYes().root.getNo().root.getNo().root.addAnswer("Animal no encontrado");
+//        DTree.root.getNo().root.getYes().root.getYes().root.addAnswer("Cocodrilo");
+//        DTree.root.getNo().root.getYes().root.getNo().root.addAnswer("Tiburon");
+//        DTree.root.getNo().root.getNo().root.getYes().root.addAnswer("Animal no encontrado");
+//        DTree.root.getNo().root.getNo().root.getNo().root.addAnswer("Animal no encontrado");
         return DTree;
     }
     public static int pregame(){

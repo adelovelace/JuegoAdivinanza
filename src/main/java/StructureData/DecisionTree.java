@@ -36,8 +36,25 @@ public class DecisionTree {
         }
     }
     public Node root;
+
     public DecisionTree(String question) {
         root = new Node(question);
+    }
+
+    public int heightTree(Node node) {
+
+        if (node == null)
+            return -1;
+        else
+        {
+            int lheight = heightTree(node.yes.root);
+            int rheight = heightTree(node.no.root);
+
+            if (lheight > rheight)
+                return (lheight + 1);
+            else
+                return (rheight + 1);
+        }
     }
     
 }

@@ -1,8 +1,6 @@
 package StructureData;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 public class DecisionTree<E> {
 
@@ -48,6 +46,8 @@ public class DecisionTree<E> {
         return true;
     }
 
+
+    //inserta las preguntas
     public void addQuestion(ArrayList<E> questions){
 
         int level = 0;
@@ -63,6 +63,41 @@ public class DecisionTree<E> {
             }
             times = (int) Math.pow(2,level+1);
             level++;
+        }
+
+        System.out.println("Nivel: " + level);
+
+    }
+
+    public void addAnswers(ArrayList<E> answers, DecisionTree<E> tree){
+
+        for (E answer: answers) {
+
+
+            List<String> ans = Arrays.asList(answer.toString().split(" "));
+
+            String name = ans.get(0);
+            System.out.println("Nombre:" +  name);
+            String ultimo = ans.get(ans.size()-1);
+            System.out.println("Ultimo:" +  ultimo);
+            Node<E> node = tree.root;
+
+            for (int i=1; i < ans.size()-1; i++){
+                if(ans.get(i).compareTo("SI")==0){
+                    node=node.left;
+                }
+                else{
+                    node= node.right;
+                }
+            }
+            Node<E> nuevo= new Node<>((E) name);
+            if (ultimo.compareTo("SI")==0){
+                node.left = nuevo;
+            }else{
+                node.right = nuevo;
+            }
+
+
         }
 
     }
@@ -98,17 +133,44 @@ public class DecisionTree<E> {
     }
 
 
-    public static void main(String[] args) {
-
-        DecisionTree <String> decisionTree = new DecisionTree();
-
-        decisionTree.insert("mama");
-        decisionTree.insert("papa");
-        decisionTree.insert("Es Carnivoro?");
-        decisionTree.insert("Es de 4 patas?");
-
-        System.out.println(decisionTree.breadthTraversal());
-        
-    }
+//    public static void main(String[] args) {
+//
+//        DecisionTree <String> decisionTree = new DecisionTree();
+//
+//        ArrayList<String> arrayList = new ArrayList<>();
+//        arrayList.add("Es un animal?");
+//        arrayList.add("Es mamifero?");
+//        arrayList.add("Es Carnivoro?");
+//        arrayList.add("Es de 4 patas?");
+//
+//        decisionTree.addQuestion(arrayList);
+//
+//        System.out.println(decisionTree.breadthTraversal());
+//
+//        ArrayList<String> arrayOso = new ArrayList<>();
+//        arrayOso.add("Oso SI SI SI SI");
+//
+//        ArrayList<String> arrayVenado = new ArrayList<>();
+//        arrayVenado.add("Venado SI SI NO SI");
+//
+//        ArrayList<String> arrayLechuza = new ArrayList<>();
+//        arrayLechuza.add("Lechuza SI NO SI NO");
+//
+//        ArrayList<String> arrayPaloma = new ArrayList<>();
+//        arrayPaloma.add("Paloma SI NO NO NO");
+//
+//
+//
+//        decisionTree.addAnswers(arrayOso,decisionTree);
+//        decisionTree.addAnswers(arrayVenado,decisionTree);
+//        decisionTree.addAnswers(arrayLechuza,decisionTree);
+//        decisionTree.addAnswers(arrayPaloma,decisionTree);
+//
+//        System.out.println(decisionTree.breadthTraversal());
+//
+//
+//
+//
+//    }
 
 }

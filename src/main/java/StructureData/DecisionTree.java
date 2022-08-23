@@ -1,11 +1,14 @@
 package StructureData;
 
+
+
 import java.util.*;
 
 public class DecisionTree<E> {
 
     private Node<E> root;
     private Queue<Node<E>> queue = new LinkedList<>();
+    private ArrayList<E> leafs = new ArrayList<>();
 
     public DecisionTree(E data) {
         this.root.data = data;
@@ -63,7 +66,6 @@ public class DecisionTree<E> {
 
         for (E answer: answers) {
 
-
             List<String> ans = Arrays.asList(answer.toString().split(" "));
 
             String name = ans.get(0);
@@ -87,7 +89,6 @@ public class DecisionTree<E> {
                 node.right = nuevo;
             }
 
-
         }
 
     }
@@ -99,7 +100,7 @@ public class DecisionTree<E> {
 
         if(nQuestions-1 == 0){
             //todo: retornar todo el arbol
-            if(tree.isEmpty()){
+            if(tree==null){
                 guess = "No tree!";
             }else{
                 Node node = new Node<>(tree.root);
@@ -142,27 +143,27 @@ public class DecisionTree<E> {
             return true;
         }
 
+        if (node.left != null){
+            return false;
+        }
+
         return false;
     }
 
-    public ArrayList printLeafNodes(Node node)
+    public void printLeafNodes(Node node)
     {
-
-        ArrayList arrayLeafs = new ArrayList<>();
-        Node<E> leaf = new Node<>((E)"No child!");
 
         // If node is null, return
         if (node == null){
-            leaf.setData((E) "Node does not exist!");
-            return arrayLeafs;
+            System.out.println("Node does not exist!");
         }
 
         // If node is leaf node, print its data
-        if (node.left == null && node.right == null)
+        if (isLeaf(node))
         {
-            arrayLeafs.add(node);
-            System.out.print(node.data + " ");
-            return arrayLeafs;
+            this.leafs.add((E)node.data);
+//            System.out.print(node.data + " ");
+
         }
 
         // If left child exists, check for leaf
@@ -174,27 +175,40 @@ public class DecisionTree<E> {
         // recursively
         if (node.right != null)
             printLeafNodes(node.right);
-
-        return arrayLeafs;
     }
 
+    //calculate tree level
+    public int levelCalc(){
+
+        int level = 0;
+
+
+        return level;
+    }
 
     //getters and setters
-    public Node getRoot() {
-        return this.root;
+    public Node<E> getRoot() {
+        return root;
     }
 
     public void setRoot(Node<E> root) {
         this.root = root;
     }
 
-
-    public boolean isEmpty(){
-        return this.root == null;
+    public Queue<Node<E>> getQueue() {
+        return queue;
     }
 
-    public E getRootContent(){
-        return this.root.getData();
+    public void setQueue(Queue<Node<E>> queue) {
+        this.queue = queue;
+    }
+
+    public ArrayList<E> getLeafs() {
+        return leafs;
+    }
+
+    public void setLeafs(ArrayList<E> leafs) {
+        this.leafs = leafs;
     }
 
     public static void main(String[] args) {
@@ -202,7 +216,7 @@ public class DecisionTree<E> {
         DecisionTree <String> decisionTree = new DecisionTree();
 
         ArrayList<String> arrayList = new ArrayList<>();
-        arrayList.add("Es un animal?");
+//        arrayList.add("Es un animal?");
         arrayList.add("Es mamifero?");
         arrayList.add("Es Carnivoro?");
         arrayList.add("Es de 4 patas?");
@@ -212,16 +226,20 @@ public class DecisionTree<E> {
         System.out.println(decisionTree.breadthTraversal());
 
         ArrayList<String> arrayOso = new ArrayList<>();
-        arrayOso.add("Oso SI SI SI SI");
+        arrayOso.add("Oso SI SI SI");
+//        arrayOso.add("Oso SI SI SI SI");
 
         ArrayList<String> arrayVenado = new ArrayList<>();
-        arrayVenado.add("Venado SI SI NO SI");
+        arrayVenado.add("Venado SI NO SI");
+//        arrayVenado.add("Venado SI SI NO SI");
 
         ArrayList<String> arrayLechuza = new ArrayList<>();
-        arrayLechuza.add("Lechuza SI NO SI NO");
+        arrayLechuza.add("Lechuza NO SI NO");
+//        arrayLechuza.add("Lechuza SI NO SI NO");
 
         ArrayList<String> arrayPaloma = new ArrayList<>();
-        arrayPaloma.add("Paloma SI NO NO NO");
+        arrayPaloma.add("Paloma NO NO NO");
+//        arrayPaloma.add("Paloma SI NO NO NO");
 
 
 
@@ -233,7 +251,14 @@ public class DecisionTree<E> {
         System.out.println(decisionTree.breadthTraversal());
 
 
-        System.out.println(decisionTree.printLeafNodes(decisionTree.root));
+        decisionTree.printLeafNodes(decisionTree.root);
+
+
+
+        for (String e : decisionTree.getLeafs()) {
+            System.out.println(e);
+        }
+
 
 
     }

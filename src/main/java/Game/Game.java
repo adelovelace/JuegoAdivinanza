@@ -31,38 +31,38 @@ public class Game {
             return num;
     }
 
-    public static void main(String[] args) {
-
-
-        Doc questions = new Doc("/Users/andrea/Documents/Espol/1T-2022/Estructura/Proyecto/2Parcial/preguntas.txt");
-        questions.readDoc();
-
-        Doc answers = new Doc("/Users/andrea/Documents/Espol/1T-2022/Estructura/Proyecto/2Parcial/respuestas.txt");
-        answers.readDoc();
-
-        DecisionTree <String> decisionTree = new DecisionTree();
-
-        for (int i =0; i < questions.getWordsArray().size(); i++) {
-            System.out.println(questions.getWordsArray().get(i));
-        }
-
-        decisionTree.addQuestion(questions.getWordsArray());
-        System.out.println(decisionTree.breadthTraversal());
-
-
-        for (int i =0; i < answers.getWordsArray().size(); i++) {
-            System.out.println(answers.getWordsArray().get(i));
-//            decisionTree.addAnswers(answers.getWordsArray(),decisionTree);
-
-        }
-
+//    public static void main(String[] args) {
+//
+//
+//        Doc questions = new Doc("/Users/andrea/Documents/Espol/1T-2022/Estructura/Proyecto/2Parcial/preguntas.txt");
+//        questions.readDoc();
+//
+//        Doc answers = new Doc("/Users/andrea/Documents/Espol/1T-2022/Estructura/Proyecto/2Parcial/respuestas.txt");
+//        answers.readDoc();
+//
+//        DecisionTree <String> decisionTree = new DecisionTree();
+//
+//        for (int i =0; i < questions.getWordsArray().size(); i++) {
+//            System.out.println(questions.getWordsArray().get(i));
+//        }
+//
+//        decisionTree.addQuestion(questions.getWordsArray());
 //        System.out.println(decisionTree.breadthTraversal());
-
-
-
-
-
-    }
+//
+//
+//        for (int i =0; i < answers.getWordsArray().size(); i++) {
+//            System.out.println(answers.getWordsArray().get(i));
+////            decisionTree.addAnswers(answers.getWordsArray(),decisionTree);
+//
+//        }
+//
+////        System.out.println(decisionTree.breadthTraversal());
+//
+//
+//
+//
+//
+//    }
 
 
 

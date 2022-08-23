@@ -15,16 +15,6 @@ public class DecisionTree<E> {
     public DecisionTree() {
     }
 
-    public Node getRoot() {
-        return this.root;
-    }
-
-    public void setRoot(Node<E> root) {
-        this.root = root;
-    }
-
-
-
     public boolean insert (E data){
 
         if(data == null){
@@ -102,16 +92,23 @@ public class DecisionTree<E> {
 
     }
 
-    public boolean isEmpty(){
-        return this.root == null;
+    //
+    public String guesses (int nQuestions, DecisionTree<E> tree){
+
+        String guess = "";
+
+        if(nQuestions-1 == 0){
+            //todo: retornar todo el arbol
+            if(tree.isEmpty()){
+                guess = "No tree!";
+            }else{
+                Node node = new Node<>(tree.root);
+
+            }
+        }
+
+        return guess;
     }
-
-    public E getRootContent(){
-        return this.root.getData();
-    }
-
-
-
 
     public LinkedList<E> breadthTraversal() {
         LinkedList<E> traversal = new LinkedList<>();
@@ -133,44 +130,112 @@ public class DecisionTree<E> {
     }
 
 
-//    public static void main(String[] args) {
-//
-//        DecisionTree <String> decisionTree = new DecisionTree();
-//
-//        ArrayList<String> arrayList = new ArrayList<>();
-//        arrayList.add("Es un animal?");
-//        arrayList.add("Es mamifero?");
-//        arrayList.add("Es Carnivoro?");
-//        arrayList.add("Es de 4 patas?");
-//
-//        decisionTree.addQuestion(arrayList);
-//
-//        System.out.println(decisionTree.breadthTraversal());
-//
-//        ArrayList<String> arrayOso = new ArrayList<>();
-//        arrayOso.add("Oso SI SI SI SI");
-//
-//        ArrayList<String> arrayVenado = new ArrayList<>();
-//        arrayVenado.add("Venado SI SI NO SI");
-//
-//        ArrayList<String> arrayLechuza = new ArrayList<>();
-//        arrayLechuza.add("Lechuza SI NO SI NO");
-//
-//        ArrayList<String> arrayPaloma = new ArrayList<>();
-//        arrayPaloma.add("Paloma SI NO NO NO");
-//
-//
-//
-//        decisionTree.addAnswers(arrayOso,decisionTree);
-//        decisionTree.addAnswers(arrayVenado,decisionTree);
-//        decisionTree.addAnswers(arrayLechuza,decisionTree);
-//        decisionTree.addAnswers(arrayPaloma,decisionTree);
-//
-//        System.out.println(decisionTree.breadthTraversal());
-//
-//
-//
-//
-//    }
+    //is a leaf
+    public boolean isLeaf(Node<E> node){
+
+        if(node == null){
+            System.out.println("It is not a leaf");
+            return false;
+        }
+
+        if(node.left == null && node.right == null){
+            return true;
+        }
+
+        return false;
+    }
+
+    public ArrayList printLeafNodes(Node node)
+    {
+
+        ArrayList arrayLeafs = new ArrayList<>();
+        Node<E> leaf = new Node<>((E)"No child!");
+
+        // If node is null, return
+        if (node == null){
+            leaf.setData((E) "Node does not exist!");
+            return arrayLeafs;
+        }
+
+        // If node is leaf node, print its data
+        if (node.left == null && node.right == null)
+        {
+            arrayLeafs.add(node);
+            System.out.print(node.data + " ");
+            return arrayLeafs;
+        }
+
+        // If left child exists, check for leaf
+        // recursively
+        if (node.left != null)
+            printLeafNodes(node.left);
+
+        // If right child exists, check for leaf
+        // recursively
+        if (node.right != null)
+            printLeafNodes(node.right);
+
+        return arrayLeafs;
+    }
+
+
+    //getters and setters
+    public Node getRoot() {
+        return this.root;
+    }
+
+    public void setRoot(Node<E> root) {
+        this.root = root;
+    }
+
+
+    public boolean isEmpty(){
+        return this.root == null;
+    }
+
+    public E getRootContent(){
+        return this.root.getData();
+    }
+
+    public static void main(String[] args) {
+
+        DecisionTree <String> decisionTree = new DecisionTree();
+
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Es un animal?");
+        arrayList.add("Es mamifero?");
+        arrayList.add("Es Carnivoro?");
+        arrayList.add("Es de 4 patas?");
+
+        decisionTree.addQuestion(arrayList);
+
+        System.out.println(decisionTree.breadthTraversal());
+
+        ArrayList<String> arrayOso = new ArrayList<>();
+        arrayOso.add("Oso SI SI SI SI");
+
+        ArrayList<String> arrayVenado = new ArrayList<>();
+        arrayVenado.add("Venado SI SI NO SI");
+
+        ArrayList<String> arrayLechuza = new ArrayList<>();
+        arrayLechuza.add("Lechuza SI NO SI NO");
+
+        ArrayList<String> arrayPaloma = new ArrayList<>();
+        arrayPaloma.add("Paloma SI NO NO NO");
+
+
+
+        decisionTree.addAnswers(arrayOso,decisionTree);
+        decisionTree.addAnswers(arrayVenado,decisionTree);
+        decisionTree.addAnswers(arrayLechuza,decisionTree);
+        decisionTree.addAnswers(arrayPaloma,decisionTree);
+
+        System.out.println(decisionTree.breadthTraversal());
+
+
+        System.out.println(decisionTree.printLeafNodes(decisionTree.root));
+
+
+    }
 
 }

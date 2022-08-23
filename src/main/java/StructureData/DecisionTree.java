@@ -162,8 +162,6 @@ public class DecisionTree<E> {
         if (isLeaf(node))
         {
             this.leafs.add((E)node.data);
-//            System.out.print(node.data + " ");
-
         }
 
         // If left child exists, check for leaf
@@ -178,12 +176,21 @@ public class DecisionTree<E> {
     }
 
     //calculate tree level
-    public int levelCalc(){
+    public int levelCalc(Node node){
 
-        int level = 0;
+        if(node.right == null && node.left==null){
+            return 1;
+        }
 
+        if(node.left !=null){
+            return levelCalc(node.left) + 1;
+        }
 
-        return level;
+        if(node.right !=null){
+            return levelCalc(node.right) + 1;
+        }
+
+        return 0;
     }
 
     //getters and setters
@@ -252,6 +259,8 @@ public class DecisionTree<E> {
 
 
         decisionTree.printLeafNodes(decisionTree.root);
+
+        System.out.println(decisionTree.levelCalc(decisionTree.root));
 
 
 

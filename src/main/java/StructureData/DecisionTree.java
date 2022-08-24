@@ -9,6 +9,7 @@ public class DecisionTree<E> {
     private Node<E> root;
     private Queue<Node<E>> queue = new LinkedList<>();
     private ArrayList<E> leafs = new ArrayList<>();
+    private ArrayList<E> guessLeafs = new ArrayList<>();
 
     public DecisionTree(E data) {
         this.root.data = data;
@@ -94,21 +95,22 @@ public class DecisionTree<E> {
     }
 
     //
-    public String guesses (int nQuestions, DecisionTree<E> tree){
+    public void guesses (DecisionTree<E> tree, ArrayList<String> paths){
 
-        String guess = "";
+        Node<E> node = tree.root;
 
-        if(nQuestions-1 == 0){
-            //todo: retornar todo el arbol
-            if(tree==null){
-                guess = "No tree!";
-            }else{
-                Node node = new Node<>(tree.root);
-
+        for(int i =0; i < paths.size(); i++){
+            if(paths.get(i).compareTo("SI")==0){
+                node=node.left;
+            }
+            else{
+                node= node.right;
             }
         }
 
-        return guess;
+        this.guessLeafs.clear();
+        printLeafNodes(node);
+
     }
 
     public LinkedList<E> breadthTraversal() {
@@ -143,10 +145,6 @@ public class DecisionTree<E> {
             return true;
         }
 
-        if (node.left != null){
-            return false;
-        }
-
         return false;
     }
 
@@ -155,14 +153,19 @@ public class DecisionTree<E> {
 
         // If node is null, return
         if (node == null){
-            System.out.println("Node does not exist!");
+            this.leafs.add((E)"Node does not exist!");
+            this.guessLeafs.add((E)"Node does not exist!");
         }
 
         // If node is leaf node, print its data
         if (isLeaf(node))
         {
             this.leafs.add((E)node.data);
+            this.guessLeafs.add((E)node.data);
+            System.out.println("Hoja " + node.getData().toString());
+
         }
+
 
         // If left child exists, check for leaf
         // recursively
@@ -173,6 +176,7 @@ public class DecisionTree<E> {
         // recursively
         if (node.right != null)
             printLeafNodes(node.right);
+
     }
 
     //calculate tree level
@@ -255,18 +259,30 @@ public class DecisionTree<E> {
         decisionTree.addAnswers(arrayLechuza,decisionTree);
         decisionTree.addAnswers(arrayPaloma,decisionTree);
 
+        System.out.println("Arbol despues de llenar con respuestas");
         System.out.println(decisionTree.breadthTraversal());
 
 
-        decisionTree.printLeafNodes(decisionTree.root);
-
+        System.out.println("Nivel del arbol");
         System.out.println(decisionTree.levelCalc(decisionTree.root));
 
+        System.out.println("Imprimir las hojas del arbol");
+        decisionTree.printLeafNodes(decisionTree.root);
 
 
+        System.out.println("Imprimir el atributo de hoja de arboles");
         for (String e : decisionTree.getLeafs()) {
             System.out.println(e);
         }
+
+        ArrayList<String> arrayPath = new ArrayList<>();
+        arrayPath.add("SI");
+        arrayPath.add("SI");
+        arrayPath.add("NO");
+
+        System.out.println("Adivina!");
+        decisionTree.guesses(decisionTree,arrayPath);
+
 
 
 

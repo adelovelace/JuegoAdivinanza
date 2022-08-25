@@ -100,16 +100,33 @@ public class DecisionTree<E> {
         Node<E> node = tree.root;
 
         for(int i =0; i < paths.size(); i++){
+
             if(paths.get(i).compareTo("SI")==0){
+                if(node.left == null){
+                    System.out.println("izquierdo es nulo");
+                    break;
+                }
                 node=node.left;
             }
             else{
+                if(node.right == null){
+                    System.out.println("derecho es nulo");
+                    break;
+                }
                 node= node.right;
             }
+
+
         }
 
-        this.guessLeafs.clear();
-        printLeafNodes(node);
+        //solucion esta en el for :D
+
+        if(node.left !=null){
+            this.guessLeafs.clear();
+            printLeafNodes(node);
+        }
+
+
 
     }
 
@@ -276,9 +293,14 @@ public class DecisionTree<E> {
         }
 
         ArrayList<String> arrayPath = new ArrayList<>();
-        arrayPath.add("SI");
-        arrayPath.add("SI");
+//        arrayPath.add("SI");
+//        arrayPath.add("SI");
+//        arrayPath.add("NO");
+
+
         arrayPath.add("NO");
+        arrayPath.add("NO");
+        arrayPath.add("SI");
 
         System.out.println("Adivina!");
         decisionTree.guesses(decisionTree,arrayPath);

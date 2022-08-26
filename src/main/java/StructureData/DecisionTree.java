@@ -104,13 +104,16 @@ public class DecisionTree<E> {
             if(paths.get(i).compareTo("SI")==0){
                 if(node.left == null){
                     System.out.println("izquierdo es nulo");
+                    node.setData((E)"Empty node");
+                    System.out.println(node.getData().toString());
                     break;
                 }
-                node=node.left;
+                node= node.left;
             }
             else{
                 if(node.right == null){
                     System.out.println("derecho es nulo");
+                    node.setData((E)"Empty node");
                     break;
                 }
                 node= node.right;
@@ -119,13 +122,19 @@ public class DecisionTree<E> {
 
         }
 
+        this.guessLeafs.clear();
+
+        if(node.getData().toString().compareTo("Empty node")==0){
+            System.out.println();
+            printLeafNodes(null);
+        }else{
+        printLeafNodes(node);}
         //solucion esta en el for :D
 
-        if(node.left !=null){
-            this.guessLeafs.clear();
-            printLeafNodes(node);
-        }
-
+//        if(node.left !=null){
+//            this.guessLeafs.clear();
+//            printLeafNodes(node);
+//        }
 
 
     }
@@ -172,11 +181,13 @@ public class DecisionTree<E> {
         if (node == null){
             this.leafs.add((E)"Node does not exist!");
             this.guessLeafs.add((E)"Node does not exist!");
+            return;
         }
 
         // If node is leaf node, print its data
         if (isLeaf(node))
         {
+            System.out.println("Entra");
             this.leafs.add((E)node.data);
             this.guessLeafs.add((E)node.data);
             System.out.println("Hoja " + node.getData().toString());
@@ -296,13 +307,30 @@ public class DecisionTree<E> {
 //        arrayPath.add("SI");
 //        arrayPath.add("SI");
 //        arrayPath.add("NO");
+        //respuesta nulo de la izquierda
+
+//        arrayPath.add("NO");
+//        arrayPath.add("SI");
+//        arrayPath.add("NO");
+        //respuesta: lechuza
+
+
+
+
+//        arrayPath.add("NO");
+//        arrayPath.add("NO");
+//        arrayPath.add("SI");
+
+        //respuesta nulo de derecha
 
 
         arrayPath.add("NO");
         arrayPath.add("NO");
-        arrayPath.add("SI");
+        arrayPath.add("NO");
+        //respuesta: paloma
 
         System.out.println("Adivina!");
+
         decisionTree.guesses(decisionTree,arrayPath);
 
 

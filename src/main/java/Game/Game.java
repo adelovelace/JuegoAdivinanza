@@ -1,27 +1,16 @@
 package Game;
 
+import Document.Doc;
 import StructureData.DecisionTree;
 import java.util.Scanner;
 
 public class Game {
-    public static DecisionTree chargeInfo(){
-        DecisionTree DTree = new DecisionTree("Es Mamifero?");
-        DTree.root.addYes(new DecisionTree("Es Carnivoro?"));
-        DTree.root.addNo(new DecisionTree("Es Carnivoro?"));
-        DTree.root.getYes().root.addYes(new DecisionTree("Se para en 4 patas?"));
-        DTree.root.getYes().root.addNo(new DecisionTree("Se para en 4 patas?"));
-        DTree.root.getNo().root.addYes(new DecisionTree("Se para en 4 patas?"));
-        DTree.root.getNo().root.addNo(new DecisionTree("Se para en 4 patas?"));
-        DTree.root.getYes().root.getYes().root.getYes().root.addAnswer("leon");
-        DTree.root.getYes().root.getYes().root.getNo().root.addAnswer("ballena");
-        DTree.root.getYes().root.getNo().root.getYes().root.addAnswer("venado");
-        DTree.root.getYes().root.getNo().root.getNo().root.addAnswer("Animal no encontrado");
-        DTree.root.getNo().root.getYes().root.getYes().root.addAnswer("Cocodrilo");
-        DTree.root.getNo().root.getYes().root.getNo().root.addAnswer("Tiburon");
-        DTree.root.getNo().root.getNo().root.getYes().root.addAnswer("Animal no encontrado");
-        DTree.root.getNo().root.getNo().root.getNo().root.addAnswer("Animal no encontrado");
-        return DTree;
-    }
+//    public static DecisionTree chargeInfo(){
+//
+//        DecisionTree DTree = new DecisionTree("Es Mamifero?");
+//
+//        return DTree;
+//    }
     public static int pregame(){
         int num =0;
         System.out.println("Bienvenido al juego de adivinar animales");
@@ -41,6 +30,39 @@ public class Game {
             }
             return num;
     }
+
+//    public static void main(String[] args) {
+//
+//
+//        Doc questions = new Doc("/Users/andrea/Documents/Espol/1T-2022/Estructura/Proyecto/2Parcial/preguntas.txt");
+//        questions.readDoc();
+//
+//        Doc answers = new Doc("/Users/andrea/Documents/Espol/1T-2022/Estructura/Proyecto/2Parcial/respuestas.txt");
+//        answers.readDoc();
+//
+//        DecisionTree <String> decisionTree = new DecisionTree();
+//
+//        for (int i =0; i < questions.getWordsArray().size(); i++) {
+//            System.out.println(questions.getWordsArray().get(i));
+//        }
+//
+//        decisionTree.addQuestion(questions.getWordsArray());
+//        System.out.println(decisionTree.breadthTraversal());
+//
+//
+//        for (int i =0; i < answers.getWordsArray().size(); i++) {
+//            System.out.println(answers.getWordsArray().get(i));
+////            decisionTree.addAnswers(answers.getWordsArray(),decisionTree);
+//
+//        }
+//
+////        System.out.println(decisionTree.breadthTraversal());
+//
+//
+//
+//
+//
+//    }
 
 
 

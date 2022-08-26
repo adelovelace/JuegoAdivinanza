@@ -1,49 +1,57 @@
 package Document;
-import StructureData.DecisionTree;
 
 import java.util.ArrayList;
 import java.io.File;
-import java.util.Arrays;
 import java.util.Scanner;
 
-public class Doc {
-    public static boolean readDoc(String path) {
-        File file = new File(path);
+public class Doc<E> {
+
+    String path;
+    ArrayList<E> wordsArray = new ArrayList<E>();
+
+
+    public Doc(String filePath){
+        this.path = filePath;
+    }
+
+    public ArrayList<E> readDoc() {
+
+
+
+        File file = new File(this.path);
         if (!file.exists()) {
-            return false;
+            System.out.println("The file doens't exist!");
+            return this.wordsArray;
         }
         try {
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                ArrayList<String> words = new ArrayList<String>(Arrays.asList(line.split(" ")));
-                String animal = words.remove(0);
-                System.out.println(line);
+                this.wordsArray.add((E) line);
+//                System.out.println(line);
             }
             scanner.close();
         } catch (Exception e) {
-            return false;
+            return wordsArray;
         }
-        return true;
+        return wordsArray;
     }
 
-    public static void fillAnswerDecisionTree(DecisionTree DTree, ArrayList<String> words, String answer) {
-        String question = words.remove(0);
-        if (words.size() == 0) {
-            return;
-        }
-        if (question.equals("yes")) {
-            fillAnswerDecisionTree(DTree.root.getYes(), words, answer);
-        } else {
-            fillAnswerDecisionTree(DTree.root.getNo(), words, answer);
-        }
-        DTree.root.addAnswer(answer);
-    }
-    public static void fillQuestionDecisionTree(DecisionTree DTree, String question){
-
-        //
+    public String getPath() {
+        return path;
     }
 
+    public void setPath(String path) {
+        this.path = path;
     }
+
+    public ArrayList<E> getWordsArray() {
+        return wordsArray;
+    }
+
+    public void setWordsArray(ArrayList<E> wordsArray) {
+        this.wordsArray = wordsArray;
+    }
+}
 
 

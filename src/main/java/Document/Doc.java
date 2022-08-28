@@ -1,5 +1,6 @@
 package Document;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.io.File;
 import java.util.Scanner;
@@ -8,17 +9,23 @@ public class Doc<E> {
 
     String path;
     ArrayList<E> wordsArray = new ArrayList<E>();
+    String name;
 
 
-    public Doc(String filePath){
+    public Doc(String filePath) {
         this.path = filePath;
+        String [] words = filePath.split("-");
+        name = words[1];
+    }
+    public String getName() {
+        return name;
     }
 
     public ArrayList<E> readDoc() {
 
 
-
         File file = new File(this.path);
+        System.out.println("path a leer: " + this.path);
         if (!file.exists()) {
             System.out.println("The file doens't exist!");
             return this.wordsArray;

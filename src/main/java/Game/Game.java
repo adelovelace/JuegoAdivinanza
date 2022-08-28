@@ -2,10 +2,69 @@ package Game;
 
 import Document.Doc;
 import StructureData.DecisionTree;
+
+import java.io.File;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-//    public static DecisionTree chargeInfo(){
+    private Doc questionsFile;
+    private Doc answersFile;
+    private DecisionTree<String> tree;
+    private int maxLevel;
+    private int numQuestions;
+
+
+    public Game() {
+        this.tree = new DecisionTree<>();
+    }
+
+    public DecisionTree<String> getTree() {
+        return tree;
+    }
+    public int getMaxLevel() {
+        return maxLevel;
+    }
+    public ArrayList<Integer> getArrayLevels(){
+        ArrayList<Integer> arrayLevels = new ArrayList<>();
+        for (int i = 1; i < this.maxLevel; i++) {
+            arrayLevels.add(i);
+        }
+        return arrayLevels;
+    }
+
+    public void setQuestionsFile(String filePath) {
+        this.questionsFile = new Doc("src/documents/questions/"+filePath);
+    }
+
+    public void setAnswersFile(String filePath) {
+        this.answersFile = new Doc("src/documents/answers/"+filePath);
+    }
+    public Doc getQuestionsFile() {
+        return questionsFile;
+    }
+
+    public void setNumQuestions(int numQuestions) {
+        this.numQuestions = numQuestions;
+    }
+
+    public Doc getAnswersFile() {
+        return answersFile;
+    }
+
+    public void prepareGame() {
+        this.questionsFile.readDoc();
+        this.answersFile.readDoc();
+        this.tree.addQuestion(this.questionsFile.getWordsArray());
+        this.tree.addAnswers(this.answersFile.getWordsArray(),this.tree);
+        this.maxLevel = this.tree.levelCalc(this.tree.getRoot());
+    }
+
+    public int getNumQuestions() {
+        return numQuestions;
+    }
+
+    //    public static DecisionTree chargeInfo(){
 //
 //        DecisionTree DTree = new DecisionTree("Es Mamifero?");
 //

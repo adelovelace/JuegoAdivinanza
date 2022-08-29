@@ -18,6 +18,9 @@ public class Game {
     public Game() {
         this.tree = new DecisionTree<>();
     }
+    public boolean isReady(){
+        return this.questionsFile != null && this.answersFile != null;
+    }
 
     public DecisionTree<String> getTree() {
         return tree;

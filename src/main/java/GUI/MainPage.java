@@ -102,6 +102,7 @@ public class MainPage {
         playButton.setDisable(true);
         Button updateButton = new Button("Actualizar Libros");
         Styles.setButton1Style(updateButton);
+        Label error = new Label("");
 
         selectAnswers.setOnAction(e -> {
             answers.setVisible(false);
@@ -132,7 +133,14 @@ public class MainPage {
             mainMenu();
         });
         playButton.setOnAction(e -> {
-            preQuest(game);
+            if(game.isReady()){
+                preQuest(game);
+            }
+            else {
+                error.setText("No Has Cargado Los Archivos Sagrados Correctamente: \n Actualiza y vuelve a Agregarlos");
+                Styles.setStyleCaution(error);
+            }
+
         });
         preGame.add(selectQuestions, 0, 0);
         preGame.add(questions, 1, 0);
@@ -147,7 +155,7 @@ public class MainPage {
         Label subTitle = new Label("Selecciona Los Libros Sagrados de Preguntas Y respuestas\nLuego Presiona Los Botones Correctamente Para Jugar ");
         Styles.setStyleSubtittle(subTitle);
         vBox.setAlignment(Pos.CENTER);
-        vBox.getChildren().addAll(subTitle,preGame);
+        vBox.getChildren().addAll(subTitle,error,preGame);
         root.setCenter(vBox);
     }
 

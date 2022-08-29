@@ -68,9 +68,12 @@ public class GameScreen {
             Label animal = new Label(answers.get(0));
             Label label = new Label("El animal en el que Piensas es: ");
             Styles.setStyleSubtittle(label);
+            Styles.setStyleVerification(animal);
             gameView.getChildren().addAll(label, animal);
             Button yesButton = new Button("SI");
             Button noButton = new Button("NO");
+            Styles.setButton1Style(yesButton);
+            Styles.setButton1Style(noButton);
             gameView.getChildren().addAll(yesButton, noButton);
 
             yesButton.setOnAction(e -> {
@@ -126,12 +129,12 @@ public class GameScreen {
         VBox finalPresentation = new VBox();
         Styles.setStyleVBox(finalPresentation);
         finalPresentation.setAlignment(Pos.CENTER);
-        String message = "Ahora Tengo Mas Conocimiento Que Antes\n Se Mas Acerca del animal "+animal+" \nPronto Nos Volveremos A Encontrar";
+        String message = "Ahora Tengo Mas Conocimiento Que Antes\n \n Se Mas Acerca del animal "+animal+" \n\n Pronto Nos Volveremos A Encontrar";
         if(derrotaPlayer){
             message += "Y Te Volvere a Ganar";
         }
         Label finalLabel = new Label(message);
-        Styles.setStyleSubtittle(finalLabel);
+        Styles.setStyleVerification(finalLabel);
         Button returnButton = new Button("Te Reto Otra Vez");
         Styles.setButton1Style(returnButton);
         returnButton.setOnAction(e -> {
